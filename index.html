@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <!-- Do _not_  rely on this URL in production. Use only during development.  -->
+    <script src="node_modules/falcor/dist/falcor.browser.js"></script>
+    <script>
+      var datasource = new falcor.HttpDataSource('/model.json');
+      var model = new falcor.Model({source:  datasource});
+
+      var gethigh = function() {
+        model.
+            getValue('greeting').then(function(value) {
+              console.log('got', value)
+            });
+      }
+      
+      var sethigh = function() {
+          model.setValue('greeting', "Hi").then(function(value){
+              console.log(value)
+          })
+      }
+    </script>
+  </head>
+  <body>
+      <button onClick="gethigh()">Get high</button>
+      <button onClick="sethigh()">Set high</button>
+  </body>
+</html>
