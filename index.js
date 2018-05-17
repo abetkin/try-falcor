@@ -4,6 +4,8 @@ var Router = require('falcor-router');
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+
 app.use('/model.json', falcorExpress.dataSourceRoute(function (req, res) {
   return new Router([
     {
@@ -25,5 +27,6 @@ app.use('/model.json', falcorExpress.dataSourceRoute(function (req, res) {
 
 // statically host all files in current directory
 app.use(express.static(__dirname + '/'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 var server = app.listen(3000);
